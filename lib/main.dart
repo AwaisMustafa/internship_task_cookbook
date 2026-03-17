@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/favourite_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'CookBook',
 
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.white),
@@ -21,11 +22,9 @@ class MyApp extends StatelessWidget {
           bodyColor: Colors.white,
           displayColor: Colors.white,
         ),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      home:  HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

@@ -7,12 +7,25 @@ class FeaturedPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.network(
-          // color: Colors.grey[800],
+        // Image.network(
+        //   // color: Colors.grey[800],
+        //   width: 200,
+        //   height: 200,
+        //   fit: BoxFit.cover,
+        //   "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
+        // ),
+        Container(
           width: 200,
           height: 200,
-          fit: BoxFit.cover,
-          "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+              image: NetworkImage(
+                "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         Positioned(
           top: 140,
@@ -20,7 +33,10 @@ class FeaturedPost extends StatelessWidget {
           child: Container(
             width: 200,
             height: 60,
-            color: Color(0x837D7D80),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color(0x837D7D80),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

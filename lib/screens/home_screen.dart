@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/featuredpost.dart';
-import '../widgets/popularpost.dart';
+import '../widgets/popularpost_section.dart';
 import '../widgets/custom_searchbar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               if (selectedIndex == 0)
-                PopularPost()
+                PopularPostSection()
               else
                 Center(
                   child: Column(

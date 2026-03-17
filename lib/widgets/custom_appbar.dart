@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../screens/favourite_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -15,7 +16,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text("CookBook", style: TextStyle(fontWeight: FontWeight.bold)),
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-        IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.heart_fill)),
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => FavouriteScreen()),
+            );
+          },
+          icon: Icon(CupertinoIcons.heart_fill),
+        ),
         IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
       ],
     );
