@@ -15,7 +15,7 @@ class CustomSearchBar extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           spacing: 10,
-          children: [Icon(Icons.search,), Text("Search recipes...")],
+          children: [Icon(Icons.search), Text("Search recipes...")],
         ),
       ),
     );
