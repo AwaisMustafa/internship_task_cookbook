@@ -21,7 +21,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.grey[800],
         title: Text("Settings", style: TextStyle(fontWeight: FontWeight.bold)),
       ),
-
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -449,7 +448,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           color: Colors.grey[900],
                         ),
                       ),
-
                     ],
                   ),
                 ),
