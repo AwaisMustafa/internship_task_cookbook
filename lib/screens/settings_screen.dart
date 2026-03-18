@@ -313,7 +313,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         subtitle: Text("Save your recipes as a backup file"),
                         trailing: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          // size: 16,
                           color: Colors.grey[900],
                         ),
                       ),
@@ -334,7 +333,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         subtitle: Text("Free up storage space"),
                         trailing: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          // size: 16,
                           color: Colors.grey[900],
                         ),
                       ),
@@ -402,7 +400,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         subtitle: Text("Get help with using the app"),
                         trailing: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          // size: 16,
                           color: Colors.grey[900],
                         ),
                       ),
@@ -423,7 +420,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         subtitle: Text("Rate us on the App Store"),
                         trailing: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          // size: 16,
                           color: Colors.grey[900],
                         ),
                       ),
@@ -444,7 +440,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         subtitle: Text("Review our privacy practices"),
                         trailing: Icon(
                           Icons.arrow_forward_ios_outlined,
-                          // size: 16,
                           color: Colors.grey[900],
                         ),
                       ),
