@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../screens/favourite_screen.dart';
+import '../screens/settings_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -25,7 +26,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
           icon: Icon(CupertinoIcons.heart_fill),
         ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+        IconButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => SettingsScreen()),
+          );
+        }, icon: Icon(Icons.settings)),
       ],
     );
   }
