@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:internship_task_cookbook/screens/recipe_details_screen.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/featuredpost.dart';
@@ -55,7 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Featured",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-              FeaturedPost(),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => RecipeDetailsScreen()),
+                  );
+                },
+                child: FeaturedPost(),
+              ),
               Text(
                 "Popular Recipes",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),

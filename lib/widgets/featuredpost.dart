@@ -56,7 +56,7 @@ class FeaturedPost extends StatelessWidget {
                     Icon(Icons.star, color: Colors.amber, size: 16),
                     Icon(Icons.star, color: Colors.amber, size: 16),
                     Icon(Icons.star_border, color: Colors.amber, size: 16),
-                    const SizedBox(width: 40),
+                    SizedBox(width: 40),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
@@ -77,7 +77,7 @@ class FeaturedPost extends StatelessWidget {
                               ),
                               alignment: PlaceholderAlignment.middle,
                             ),
-                            const TextSpan(
+                            TextSpan(
                               text: ' 45m',
                               style: TextStyle(color: Colors.white),
                             ),

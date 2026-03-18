@@ -25,7 +25,7 @@ class CategoryButton extends StatelessWidget {
           color: isSelected ? Color(0xFF5750D4) : Colors.grey[800],
           borderRadius: BorderRadius.circular(25),
         ),
-        child: Text(label, style: const TextStyle(color: Colors.white)),
+        child: Text(label, style: TextStyle(color: Colors.white)),
       ),
     );
   }
