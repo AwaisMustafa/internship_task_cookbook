@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:internship_task_cookbook/screens/recipe_details_screen.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/custom_categorybutton.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/featuredpost.dart';
 import '../widgets/popularpost_section.dart';
