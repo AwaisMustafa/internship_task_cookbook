@@ -101,43 +101,7 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
             ),
           ),
         ),
-
-        // body: ListView.builder(
-        //   itemCount: items.length,
-        //   itemBuilder: (context, index) {
-        //     final item = items[index];
-        //     return Transform.scale(
-        //       scale: 1.3, // make the checkbox bigger/thicker
-        //
-        //       child: CheckboxListTile(
-        //         value: item["checked"],
-        //         onChanged: (bool? value) {
-        //           setState(() {
-        //             item["checked"] = value ?? false;
-        //           });
-        //         },
-        //         title: Text(
-        //           item["name"],
-        //           style: TextStyle(
-        //             color: Colors.red,
-        //
-        //             fontSize: 18,
-        //             decoration: item["checked"]
-        //                 ? TextDecoration.lineThrough
-        //                 : TextDecoration.none,
-        //           ),
-        //         ),
-        //         subtitle: Text(item["qty"],style: TextStyle(color: Colors.red,),),
-        //         activeColor: Colors.purple, // checkbox background when checked
-        //         checkColor: Colors.white,   // checkmark color
-        //         controlAffinity: ListTileControlAffinity.leading, // checkbox on the left
-        //         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        //       ),
-        //     );
-        //   },
-        // ),.
         bottomNavigationBar: StartCookingSection(),
-
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10),

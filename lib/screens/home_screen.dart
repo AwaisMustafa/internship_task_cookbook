@@ -5,6 +5,7 @@ import '../widgets/custom_appbar.dart';
 import '../widgets/featuredpost.dart';
 import '../widgets/popularpost_section.dart';
 import '../widgets/custom_searchbar.dart';
+import 'browse_recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomSearchBar(),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => BrowseRecipesScreen()),
+                  );
+                },
+                child: CustomSearchBar(),
+              ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
