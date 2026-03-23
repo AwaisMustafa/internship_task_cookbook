@@ -91,7 +91,7 @@ class PopularPost extends StatelessWidget {
                                 ),
                                 alignment: PlaceholderAlignment.middle,
                               ),
-                              const TextSpan(
+                              TextSpan(
                                 text: ' 45m',
                                 style: TextStyle(color: Colors.white),
                               ),
