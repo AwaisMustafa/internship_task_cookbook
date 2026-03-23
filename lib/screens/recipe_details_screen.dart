@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/custom_checkbox.dart';
+import '../widgets/startcooking_section.dart';
 
 class RecipeDetailsScreen extends StatefulWidget {
   RecipeDetailsScreen({super.key});
@@ -11,14 +11,6 @@ class RecipeDetailsScreen extends StatefulWidget {
 }
 
 class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
-  // final List<Map<String, dynamic>> items = [
-  //   {"name": "Chicken breast", "qty": "500g", "checked": true},
-  //   {"name": "Plain yogurt", "qty": "1 cup", "checked": true},
-  //   {"name": "Garam masala", "qty": "1 tsp", "checked": true},
-  //   {"name": "Cumin powder", "qty": "1 tsp", "checked": false},
-  //   {"name": "Coriander powder", "qty": "1 tsp", "checked": false},
-  //   {"name": "Tomato puree", "qty": "—", "checked": false},
-  // ];
 
   final List<String> itemsName = [
     "Chicken breast",
@@ -32,7 +24,7 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
     "Salt",
   ];
 
-  final List<String> itemsQyt = [
+  final List<String> itemsQty = [
     "500g",
     "1 cup",
     "1 tsp",
@@ -68,7 +60,6 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
         "nan Simmer for 5 minutes to heat thronah",
   ];
 
-  // Start Cooking
   bool isChecked = false;
 
   @override
@@ -249,23 +240,23 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
                   children: [
                     CustomCheckbox(
                       titleOne: itemsName[0],
-                      titleTwo: itemsQyt[0],
+                      titleTwo: itemsQty[0],
                     ),
                     CustomCheckbox(
                       titleOne: itemsName[1],
-                      titleTwo: itemsQyt[1],
+                      titleTwo: itemsQty[1],
                     ),
                     CustomCheckbox(
                       titleOne: itemsName[2],
-                      titleTwo: itemsQyt[2],
+                      titleTwo: itemsQty[2],
                     ),
                     CustomCheckbox(
                       titleOne: itemsName[3],
-                      titleTwo: itemsQyt[3],
+                      titleTwo: itemsQty[3],
                     ),
                     CustomCheckbox(
                       titleOne: itemsName[4],
-                      titleTwo: itemsQyt[4],
+                      titleTwo: itemsQty[4],
                     ),
                   ],
                 ),
@@ -304,62 +295,6 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class StartCookingSection extends StatelessWidget {
-  const StartCookingSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: 10,
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.77,
-          height: 70,
-          decoration: BoxDecoration(
-            color: Color(0xFF5750D4),
-            borderRadius: BorderRadius.circular(18),
-          ),
-          alignment: Alignment.center,
-          child: RichText(
-            text: TextSpan(
-              children: [
-                WidgetSpan(
-                  child: Icon(
-                    Icons.local_fire_department_rounded,
-                    size: 35,
-                    // color: Colors.orange,
-                  ),
-                  alignment: PlaceholderAlignment.middle,
-                ),
-                const TextSpan(
-                  text: ' Start Cooking',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.2,
-          height: 70,
-          decoration: BoxDecoration(
-            // color: Color(0xFF5750D4),
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: Color(0xFF5750D4), width: 3),
-          ),
-          alignment: Alignment.center,
-          child: Icon(Icons.edit),
-        ),
-      ],
     );
   }
 }

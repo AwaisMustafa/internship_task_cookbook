@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/featuredpost.dart';
 import '../widgets/popularpost.dart';
-import '../widgets/popularpost_section.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
