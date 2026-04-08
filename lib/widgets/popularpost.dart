@@ -1,15 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'rating_stars_widget.dart';
+
 class PopularPost extends StatelessWidget {
   const PopularPost({
     super.key,
     required this.widthOfImage,
     required this.widthOfContainer,
+    required this.networkImage,
+    required this.postTitle,
   });
 
   final double widthOfContainer;
   final double widthOfImage;
+  final String networkImage;
+  final String postTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,8 @@ class PopularPost extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 image: NetworkImage(
-                  "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
+                  networkImage,
+                  // "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
                 ),
                 fit: BoxFit.cover,
               ),
@@ -55,7 +62,8 @@ class PopularPost extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Chicken Tikka",
+                    postTitle,
+                    // "Chicken Tikka",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -65,11 +73,7 @@ class PopularPost extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(Icons.star, color: Colors.amber, size: 15),
-                      Icon(Icons.star, color: Colors.amber, size: 15),
-                      Icon(Icons.star, color: Colors.amber, size: 15),
-                      Icon(Icons.star, color: Colors.amber, size: 15),
-                      Icon(Icons.star_border, color: Colors.amber, size: 15),
+                      RatingStarsWidget(starSize: 15,),
                       const SizedBox(width: 30),
                       Container(
                         padding: const EdgeInsets.symmetric(

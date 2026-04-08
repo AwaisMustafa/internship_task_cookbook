@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:internship_task_cookbook/widgets/popularpost.dart';
+import '../models/categoriesMealDBModel.dart';
+import '../models/searchMealDBModel.dart';
 import '../screens/recipe_details_screen.dart';
+import '../services/api_service.dart';
 import '../widgets/custom_categorybutton.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/featuredpost.dart';
@@ -14,11 +18,19 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-List<String> categoryName = ["All", "Breakfast", "Lunch", "Dinner", "Dessert"];
+// List<String> categoryName = ["All", "Breakfast", "Lunch", "Dinner", "Dessert"];
 
 int selectedIndex = 0;
 
 class _HomeScreenState extends State<HomeScreen> {
+  late Future<List<Categories>> categoriesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    categoriesFuture = ApiServiceCategories().fetchCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,24 +53,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: CustomSearchBar(),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(4, (index) {
-                    final isSelected = index == selectedIndex;
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      child: CategoryButton(
-                        isSelected: isSelected,
-                        label: categoryName[index],
-                      ),
+              FutureBuilder<List<Categories>>(
+                future: categoriesFuture,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return SizedBox(
+                      height: 50,
+                      child: Center(child: CircularProgressIndicator()),
                     );
-                  }),
-                ),
+                  }
+
+                  final categories = snapshot.data!;
+
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(categories.length, (index) {
+                        final isSelected = index == selectedIndex;
+                        final category = categories[index];
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: CategoryButton(
+                            isSelected: isSelected,
+                            label: category.strCategory ?? "",
+                            // categoryName[index],
+                          ),
+                        );
+                      }),
+                    ),
+                  );
+                },
               ),
               Text(
                 "Featured",
@@ -71,8 +99,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: (_) => RecipeDetailsScreen()),
                   );
                 },
-                child: FeaturedPost(),
+                // child:FeaturedPost(),
+                child: FutureBuilder<List<Categories>>(
+                  future: categoriesFuture,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return SizedBox(
+                        height: 50,
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+
+                    final categories = snapshot.data!;
+                    final category = categories[8];
+
+                    return PopularPost(
+                      widthOfImage: 200,
+                      widthOfContainer: 200,
+                      networkImage: category.strCategoryThumb ?? "",
+                      postTitle: category.strCategory ?? "",
+                    );
+                  },
+                ),
               ),
+
               Text(
                 "Popular Recipes",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
