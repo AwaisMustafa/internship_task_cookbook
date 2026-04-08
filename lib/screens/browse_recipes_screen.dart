@@ -91,7 +91,14 @@ class BrowseRecipesScreen extends StatelessWidget {
                 ],
               ),
               PopularPostSection(),
-              PopularPost(widthOfImage: 149, widthOfContainer: 150),
+              PopularPost(
+                widthOfImage: 192,
+                widthOfContainer: 200,
+                networkImage:
+                    // mealsFuture.strSource
+                    'https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg',
+                postTitle: 'Chicken Tikka',
+              ),
               SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +158,14 @@ class BrowseRecipesScreen extends StatelessWidget {
                 ],
               ),
               PopularPostSection(),
-              PopularPost(widthOfImage: 149, widthOfContainer: 150),
+              PopularPost(
+                widthOfImage: 192,
+                widthOfContainer: 200,
+                networkImage:
+                    // mealsFuture.strSource
+                    'https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg',
+                postTitle: 'Chicken Tikka',
+              ),
             ],
           ),
         ),

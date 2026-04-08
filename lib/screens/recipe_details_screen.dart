@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_checkbox.dart';
+import '../widgets/rating_stars_widget.dart';
 import '../widgets/startcooking_section.dart';
 
 class RecipeDetailsScreen extends StatefulWidget {
@@ -11,7 +12,6 @@ class RecipeDetailsScreen extends StatefulWidget {
 }
 
 class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
-
   final List<String> itemsName = [
     "Chicken breast",
     "Plain yogurt",
@@ -133,15 +133,7 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Icon(Icons.star, color: Colors.amber, size: 25),
-                                Icon(Icons.star, color: Colors.amber, size: 25),
-                                Icon(Icons.star, color: Colors.amber, size: 25),
-                                Icon(Icons.star, color: Colors.amber, size: 25),
-                                Icon(
-                                  Icons.star_border,
-                                  color: Colors.amber,
-                                  size: 25,
-                                ),
+                                RatingStarsWidget(starSize: 25),
                                 SizedBox(width: 15),
                                 Text("4.6", style: TextStyle(fontSize: 25)),
                                 SizedBox(width: 15),

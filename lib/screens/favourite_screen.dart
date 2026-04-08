@@ -52,14 +52,28 @@ class FavouriteScreen extends StatelessWidget {
               itemCount: 4,
               itemBuilder: (context, index) {
                 return Center(
-                  child: PopularPost(widthOfImage: 192, widthOfContainer: 200),
+                  child: PopularPost(
+                    widthOfImage: 192,
+                    widthOfContainer: 200,
+                    networkImage:
+                        // mealsFuture.strSource
+                        'https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg',
+                    postTitle: 'Chicken Tikka',
+                  ),
                 );
               },
             ),
           ),
           Expanded(
             flex: 2,
-            child: PopularPost(widthOfImage: 400, widthOfContainer: 400),
+            child: PopularPost(
+              widthOfImage: 192,
+              widthOfContainer: 200,
+              networkImage:
+                  // mealsFuture.strSource
+                  'https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg',
+              postTitle: 'Chicken Tikka',
+            ),
           ),
         ],
       ),
