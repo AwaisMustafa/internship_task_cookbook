@@ -44,7 +44,7 @@ class ApiServiceSearch {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      final mealDb = MealDbapi.fromJson(data);
+      final mealDb = SearchMealModel.fromJson(data);
 
       return mealDb.meals ?? [];
     } else {
@@ -62,7 +62,7 @@ class ApiServiceCategories {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      final CategoriesDb = CategoriesMealModel.fromJson(data);
+      final CategoriesDb = CategoriesMealDBModel.fromJson(data);
 
       return CategoriesDb.categories ?? [];
     } else {
