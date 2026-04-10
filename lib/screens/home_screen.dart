@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:internship_task_cookbook/widgets/popularpost.dart';
 import '../models/categoriesMealDBModel.dart';
-import '../models/searchMealDBModel.dart';
 import '../screens/recipe_details_screen.dart';
 import '../services/api_service.dart';
 import '../widgets/custom_categorybutton.dart';
 import '../widgets/custom_appbar.dart';
-import '../widgets/featuredpost.dart';
 import '../widgets/popularpost_section.dart';
 import '../widgets/custom_searchbar.dart';
 import 'browse_recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+
+  const HomeScreen({super.key,});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -34,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       appBar: CustomAppBar(),
       body: SingleChildScrollView(
         child: Padding(

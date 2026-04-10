@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/theme_controller.dart';
+
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({super.key, });
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -15,7 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: Colors.grey[800],
@@ -60,12 +62,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         title: Text("Dark Theme"),
                         subtitle: Text("Currently using dark mode"),
-                        trailing: Switch(
-                          value: isToggleOne,
+                        trailing:
+                        Switch(
+                          value: ThemeController.instance.themeMode.value == ThemeMode.dark,
                           onChanged: (value) {
-                            setState(() {
-                              isToggleOne = value;
-                            });
+                            ThemeController.instance.toggleTheme(value);
                           },
                           activeColor: Colors.black,
                           activeThumbColor: Colors.grey[800],
@@ -73,6 +74,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           activeTrackColor: Colors.grey[700],
                           inactiveTrackColor: Colors.grey[600],
                         ),
+                        // Switch(
+                        //   value: widget.themeMode == ThemeMode.dark,
+                        //   onChanged: (value) {
+                        //     setState(() {
+                        //       widget.toggleTheme?.call(value);
+                        //     });
+                        //   },
+                        //    activeColor: Colors.black,
+                        //    activeThumbColor: Colors.grey[800],
+                        //    inactiveThumbColor: Colors.grey[800],
+                        //    activeTrackColor: Colors.grey[700],
+                        //    inactiveTrackColor: Colors.grey[600],
+                        // ),
                       ),
                       Container(
                         width: double.infinity,

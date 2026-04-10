@@ -66,7 +66,7 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(300),
           child: AppBar(

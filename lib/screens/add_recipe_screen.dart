@@ -9,7 +9,7 @@ class AddRecipeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         appBar: AppBar(
           foregroundColor: Colors.white,
           centerTitle: true,

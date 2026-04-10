@@ -7,7 +7,7 @@ class FavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: Colors.grey[800],
