@@ -52,10 +52,10 @@ class PopularPost extends StatelessWidget {
             top: 142,
             // bottom: 12,
             child: Container(
-              width: 192,
+              width: widthOfImage,
               height: 58,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(15),
                 color: Color(0x837D7D80),
               ),
               child: Column(
