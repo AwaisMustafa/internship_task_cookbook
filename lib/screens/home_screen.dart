@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:internship_task_cookbook/widgets/popularpost.dart';
 import '../models/categoriesMealDBModel.dart';
 import '../screens/recipe_details_screen.dart';
-import '../services/api_service.dart';
+import '../services/apiServiceCategories.dart';
 import '../widgets/custom_categorybutton.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/popularpost_section.dart';

@@ -1,33 +1,30 @@
 /// meals : [{"idMeal":"52772","strMeal":"Teriyaki Chicken Casserole","strMealAlternate":null,"strCategory":"Chicken","strArea":"Japanese","strInstructions":"Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray.\r\nCombine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling.\r\nMeanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat.\r\nPlace the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks.\r\n*Meanwhile, steam or cook the vegetables according to package directions.\r\nAdd the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!","strMealThumb":"https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg","strTags":"Meat,Casserole","strYoutube":"https://www.youtube.com/watch?v=4aZr5hZXP_s","strIngredient1":"soy sauce","strIngredient2":"water","strIngredient3":"brown sugar","strIngredient4":"ground ginger","strIngredient5":"minced garlic","strIngredient6":"cornstarch","strIngredient7":"chicken breasts","strIngredient8":"stir-fry vegetables","strIngredient9":"brown rice","strIngredient10":"","strIngredient11":"","strIngredient12":"","strIngredient13":"","strIngredient14":"","strIngredient15":"","strIngredient16":null,"strIngredient17":null,"strIngredient18":null,"strIngredient19":null,"strIngredient20":null,"strMeasure1":"3/4 cup","strMeasure2":"1/2 cup","strMeasure3":"1/4 cup","strMeasure4":"1/2 teaspoon","strMeasure5":"1/2 teaspoon","strMeasure6":"4 Tablespoons","strMeasure7":"2","strMeasure8":"1 (12 oz.)","strMeasure9":"3 cups","strMeasure10":"","strMeasure11":"","strMeasure12":"","strMeasure13":"","strMeasure14":"","strMeasure15":"","strMeasure16":null,"strMeasure17":null,"strMeasure18":null,"strMeasure19":null,"strMeasure20":null,"strSource":null,"strImageSource":null,"strCreativeCommonsConfirmed":null,"dateModified":null}]
 
 class RecipeDetailsMealDBModel {
-  RecipeDetailsMealDBModel({
-      List<Meals>? meals,}){
-    _meals = meals;
-}
+  RecipeDetailsMealDBModel({List<RecipeDetailsMeal>? RDMeals}) {
+    RDMeal = RDMeals;
+  }
 
   RecipeDetailsMealDBModel.fromJson(dynamic json) {
     if (json['meals'] != null) {
-      _meals = [];
+      RDMeal = [];
       json['meals'].forEach((v) {
-        _meals?.add(Meals.fromJson(v));
+        RDMeal?.add(RecipeDetailsMeal.fromJson(v));
       });
     }
   }
-  List<Meals>? _meals;
-RecipeDetailsMealDBModel copyWith({  List<Meals>? meals,
-}) => RecipeDetailsMealDBModel(  meals: meals ?? _meals,
-);
-  List<Meals>? get meals => _meals;
+  List<RecipeDetailsMeal>? RDMeal;
+  RecipeDetailsMealDBModel copyWith({List<RecipeDetailsMeal>? meals}) =>
+      RecipeDetailsMealDBModel(RDMeals: meals ?? RDMeal);
+  List<RecipeDetailsMeal>? get meals => RDMeal;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_meals != null) {
-      map['meals'] = _meals?.map((v) => v.toJson()).toList();
+    if (RDMeal != null) {
+      map['meals'] = RDMeal?.map((v) => v.toJson()).toList();
     }
     return map;
   }
-
 }
 
 /// idMeal : "52772"
@@ -84,61 +81,62 @@ RecipeDetailsMealDBModel copyWith({  List<Meals>? meals,
 /// strCreativeCommonsConfirmed : null
 /// dateModified : null
 
-class Meals {
-  Meals({
-      String? idMeal, 
-      String? strMeal, 
-      dynamic strMealAlternate, 
-      String? strCategory, 
-      String? strArea, 
-      String? strInstructions, 
-      String? strMealThumb, 
-      String? strTags, 
-      String? strYoutube, 
-      String? strIngredient1, 
-      String? strIngredient2, 
-      String? strIngredient3, 
-      String? strIngredient4, 
-      String? strIngredient5, 
-      String? strIngredient6, 
-      String? strIngredient7, 
-      String? strIngredient8, 
-      String? strIngredient9, 
-      String? strIngredient10, 
-      String? strIngredient11, 
-      String? strIngredient12, 
-      String? strIngredient13, 
-      String? strIngredient14, 
-      String? strIngredient15, 
-      dynamic strIngredient16, 
-      dynamic strIngredient17, 
-      dynamic strIngredient18, 
-      dynamic strIngredient19, 
-      dynamic strIngredient20, 
-      String? strMeasure1, 
-      String? strMeasure2, 
-      String? strMeasure3, 
-      String? strMeasure4, 
-      String? strMeasure5, 
-      String? strMeasure6, 
-      String? strMeasure7, 
-      String? strMeasure8, 
-      String? strMeasure9, 
-      String? strMeasure10, 
-      String? strMeasure11, 
-      String? strMeasure12, 
-      String? strMeasure13, 
-      String? strMeasure14, 
-      String? strMeasure15, 
-      dynamic strMeasure16, 
-      dynamic strMeasure17, 
-      dynamic strMeasure18, 
-      dynamic strMeasure19, 
-      dynamic strMeasure20, 
-      dynamic strSource, 
-      dynamic strImageSource, 
-      dynamic strCreativeCommonsConfirmed, 
-      dynamic dateModified,}){
+class RecipeDetailsMeal {
+  RecipeDetailsMeal({
+    String? idMeal,
+    String? strMeal,
+    dynamic strMealAlternate,
+    String? strCategory,
+    String? strArea,
+    String? strInstructions,
+    String? strMealThumb,
+    String? strTags,
+    String? strYoutube,
+    String? strIngredient1,
+    String? strIngredient2,
+    String? strIngredient3,
+    String? strIngredient4,
+    String? strIngredient5,
+    String? strIngredient6,
+    String? strIngredient7,
+    String? strIngredient8,
+    String? strIngredient9,
+    String? strIngredient10,
+    String? strIngredient11,
+    String? strIngredient12,
+    String? strIngredient13,
+    String? strIngredient14,
+    String? strIngredient15,
+    dynamic strIngredient16,
+    dynamic strIngredient17,
+    dynamic strIngredient18,
+    dynamic strIngredient19,
+    dynamic strIngredient20,
+    String? strMeasure1,
+    String? strMeasure2,
+    String? strMeasure3,
+    String? strMeasure4,
+    String? strMeasure5,
+    String? strMeasure6,
+    String? strMeasure7,
+    String? strMeasure8,
+    String? strMeasure9,
+    String? strMeasure10,
+    String? strMeasure11,
+    String? strMeasure12,
+    String? strMeasure13,
+    String? strMeasure14,
+    String? strMeasure15,
+    dynamic strMeasure16,
+    dynamic strMeasure17,
+    dynamic strMeasure18,
+    dynamic strMeasure19,
+    dynamic strMeasure20,
+    dynamic strSource,
+    dynamic strImageSource,
+    dynamic strCreativeCommonsConfirmed,
+    dynamic dateModified,
+  }) {
     _idMeal = idMeal;
     _strMeal = strMeal;
     _strMealAlternate = strMealAlternate;
@@ -192,9 +190,9 @@ class Meals {
     _strImageSource = strImageSource;
     _strCreativeCommonsConfirmed = strCreativeCommonsConfirmed;
     _dateModified = dateModified;
-}
+  }
 
-  Meals.fromJson(dynamic json) {
+  RecipeDetailsMeal.fromJson(dynamic json) {
     _idMeal = json['idMeal'];
     _strMeal = json['strMeal'];
     _strMealAlternate = json['strMealAlternate'];
@@ -302,113 +300,116 @@ class Meals {
   dynamic _strImageSource;
   dynamic _strCreativeCommonsConfirmed;
   dynamic _dateModified;
-Meals copyWith({  String? idMeal,
-  String? strMeal,
-  dynamic strMealAlternate,
-  String? strCategory,
-  String? strArea,
-  String? strInstructions,
-  String? strMealThumb,
-  String? strTags,
-  String? strYoutube,
-  String? strIngredient1,
-  String? strIngredient2,
-  String? strIngredient3,
-  String? strIngredient4,
-  String? strIngredient5,
-  String? strIngredient6,
-  String? strIngredient7,
-  String? strIngredient8,
-  String? strIngredient9,
-  String? strIngredient10,
-  String? strIngredient11,
-  String? strIngredient12,
-  String? strIngredient13,
-  String? strIngredient14,
-  String? strIngredient15,
-  dynamic strIngredient16,
-  dynamic strIngredient17,
-  dynamic strIngredient18,
-  dynamic strIngredient19,
-  dynamic strIngredient20,
-  String? strMeasure1,
-  String? strMeasure2,
-  String? strMeasure3,
-  String? strMeasure4,
-  String? strMeasure5,
-  String? strMeasure6,
-  String? strMeasure7,
-  String? strMeasure8,
-  String? strMeasure9,
-  String? strMeasure10,
-  String? strMeasure11,
-  String? strMeasure12,
-  String? strMeasure13,
-  String? strMeasure14,
-  String? strMeasure15,
-  dynamic strMeasure16,
-  dynamic strMeasure17,
-  dynamic strMeasure18,
-  dynamic strMeasure19,
-  dynamic strMeasure20,
-  dynamic strSource,
-  dynamic strImageSource,
-  dynamic strCreativeCommonsConfirmed,
-  dynamic dateModified,
-}) => Meals(  idMeal: idMeal ?? _idMeal,
-  strMeal: strMeal ?? _strMeal,
-  strMealAlternate: strMealAlternate ?? _strMealAlternate,
-  strCategory: strCategory ?? _strCategory,
-  strArea: strArea ?? _strArea,
-  strInstructions: strInstructions ?? _strInstructions,
-  strMealThumb: strMealThumb ?? _strMealThumb,
-  strTags: strTags ?? _strTags,
-  strYoutube: strYoutube ?? _strYoutube,
-  strIngredient1: strIngredient1 ?? _strIngredient1,
-  strIngredient2: strIngredient2 ?? _strIngredient2,
-  strIngredient3: strIngredient3 ?? _strIngredient3,
-  strIngredient4: strIngredient4 ?? _strIngredient4,
-  strIngredient5: strIngredient5 ?? _strIngredient5,
-  strIngredient6: strIngredient6 ?? _strIngredient6,
-  strIngredient7: strIngredient7 ?? _strIngredient7,
-  strIngredient8: strIngredient8 ?? _strIngredient8,
-  strIngredient9: strIngredient9 ?? _strIngredient9,
-  strIngredient10: strIngredient10 ?? _strIngredient10,
-  strIngredient11: strIngredient11 ?? _strIngredient11,
-  strIngredient12: strIngredient12 ?? _strIngredient12,
-  strIngredient13: strIngredient13 ?? _strIngredient13,
-  strIngredient14: strIngredient14 ?? _strIngredient14,
-  strIngredient15: strIngredient15 ?? _strIngredient15,
-  strIngredient16: strIngredient16 ?? _strIngredient16,
-  strIngredient17: strIngredient17 ?? _strIngredient17,
-  strIngredient18: strIngredient18 ?? _strIngredient18,
-  strIngredient19: strIngredient19 ?? _strIngredient19,
-  strIngredient20: strIngredient20 ?? _strIngredient20,
-  strMeasure1: strMeasure1 ?? _strMeasure1,
-  strMeasure2: strMeasure2 ?? _strMeasure2,
-  strMeasure3: strMeasure3 ?? _strMeasure3,
-  strMeasure4: strMeasure4 ?? _strMeasure4,
-  strMeasure5: strMeasure5 ?? _strMeasure5,
-  strMeasure6: strMeasure6 ?? _strMeasure6,
-  strMeasure7: strMeasure7 ?? _strMeasure7,
-  strMeasure8: strMeasure8 ?? _strMeasure8,
-  strMeasure9: strMeasure9 ?? _strMeasure9,
-  strMeasure10: strMeasure10 ?? _strMeasure10,
-  strMeasure11: strMeasure11 ?? _strMeasure11,
-  strMeasure12: strMeasure12 ?? _strMeasure12,
-  strMeasure13: strMeasure13 ?? _strMeasure13,
-  strMeasure14: strMeasure14 ?? _strMeasure14,
-  strMeasure15: strMeasure15 ?? _strMeasure15,
-  strMeasure16: strMeasure16 ?? _strMeasure16,
-  strMeasure17: strMeasure17 ?? _strMeasure17,
-  strMeasure18: strMeasure18 ?? _strMeasure18,
-  strMeasure19: strMeasure19 ?? _strMeasure19,
-  strMeasure20: strMeasure20 ?? _strMeasure20,
-  strSource: strSource ?? _strSource,
-  strImageSource: strImageSource ?? _strImageSource,
-  strCreativeCommonsConfirmed: strCreativeCommonsConfirmed ?? _strCreativeCommonsConfirmed,
-  dateModified: dateModified ?? _dateModified,
-);
+  RecipeDetailsMeal copyWith({
+    String? idMeal,
+    String? strMeal,
+    dynamic strMealAlternate,
+    String? strCategory,
+    String? strArea,
+    String? strInstructions,
+    String? strMealThumb,
+    String? strTags,
+    String? strYoutube,
+    String? strIngredient1,
+    String? strIngredient2,
+    String? strIngredient3,
+    String? strIngredient4,
+    String? strIngredient5,
+    String? strIngredient6,
+    String? strIngredient7,
+    String? strIngredient8,
+    String? strIngredient9,
+    String? strIngredient10,
+    String? strIngredient11,
+    String? strIngredient12,
+    String? strIngredient13,
+    String? strIngredient14,
+    String? strIngredient15,
+    dynamic strIngredient16,
+    dynamic strIngredient17,
+    dynamic strIngredient18,
+    dynamic strIngredient19,
+    dynamic strIngredient20,
+    String? strMeasure1,
+    String? strMeasure2,
+    String? strMeasure3,
+    String? strMeasure4,
+    String? strMeasure5,
+    String? strMeasure6,
+    String? strMeasure7,
+    String? strMeasure8,
+    String? strMeasure9,
+    String? strMeasure10,
+    String? strMeasure11,
+    String? strMeasure12,
+    String? strMeasure13,
+    String? strMeasure14,
+    String? strMeasure15,
+    dynamic strMeasure16,
+    dynamic strMeasure17,
+    dynamic strMeasure18,
+    dynamic strMeasure19,
+    dynamic strMeasure20,
+    dynamic strSource,
+    dynamic strImageSource,
+    dynamic strCreativeCommonsConfirmed,
+    dynamic dateModified,
+  }) => RecipeDetailsMeal(
+    idMeal: idMeal ?? _idMeal,
+    strMeal: strMeal ?? _strMeal,
+    strMealAlternate: strMealAlternate ?? _strMealAlternate,
+    strCategory: strCategory ?? _strCategory,
+    strArea: strArea ?? _strArea,
+    strInstructions: strInstructions ?? _strInstructions,
+    strMealThumb: strMealThumb ?? _strMealThumb,
+    strTags: strTags ?? _strTags,
+    strYoutube: strYoutube ?? _strYoutube,
+    strIngredient1: strIngredient1 ?? _strIngredient1,
+    strIngredient2: strIngredient2 ?? _strIngredient2,
+    strIngredient3: strIngredient3 ?? _strIngredient3,
+    strIngredient4: strIngredient4 ?? _strIngredient4,
+    strIngredient5: strIngredient5 ?? _strIngredient5,
+    strIngredient6: strIngredient6 ?? _strIngredient6,
+    strIngredient7: strIngredient7 ?? _strIngredient7,
+    strIngredient8: strIngredient8 ?? _strIngredient8,
+    strIngredient9: strIngredient9 ?? _strIngredient9,
+    strIngredient10: strIngredient10 ?? _strIngredient10,
+    strIngredient11: strIngredient11 ?? _strIngredient11,
+    strIngredient12: strIngredient12 ?? _strIngredient12,
+    strIngredient13: strIngredient13 ?? _strIngredient13,
+    strIngredient14: strIngredient14 ?? _strIngredient14,
+    strIngredient15: strIngredient15 ?? _strIngredient15,
+    strIngredient16: strIngredient16 ?? _strIngredient16,
+    strIngredient17: strIngredient17 ?? _strIngredient17,
+    strIngredient18: strIngredient18 ?? _strIngredient18,
+    strIngredient19: strIngredient19 ?? _strIngredient19,
+    strIngredient20: strIngredient20 ?? _strIngredient20,
+    strMeasure1: strMeasure1 ?? _strMeasure1,
+    strMeasure2: strMeasure2 ?? _strMeasure2,
+    strMeasure3: strMeasure3 ?? _strMeasure3,
+    strMeasure4: strMeasure4 ?? _strMeasure4,
+    strMeasure5: strMeasure5 ?? _strMeasure5,
+    strMeasure6: strMeasure6 ?? _strMeasure6,
+    strMeasure7: strMeasure7 ?? _strMeasure7,
+    strMeasure8: strMeasure8 ?? _strMeasure8,
+    strMeasure9: strMeasure9 ?? _strMeasure9,
+    strMeasure10: strMeasure10 ?? _strMeasure10,
+    strMeasure11: strMeasure11 ?? _strMeasure11,
+    strMeasure12: strMeasure12 ?? _strMeasure12,
+    strMeasure13: strMeasure13 ?? _strMeasure13,
+    strMeasure14: strMeasure14 ?? _strMeasure14,
+    strMeasure15: strMeasure15 ?? _strMeasure15,
+    strMeasure16: strMeasure16 ?? _strMeasure16,
+    strMeasure17: strMeasure17 ?? _strMeasure17,
+    strMeasure18: strMeasure18 ?? _strMeasure18,
+    strMeasure19: strMeasure19 ?? _strMeasure19,
+    strMeasure20: strMeasure20 ?? _strMeasure20,
+    strSource: strSource ?? _strSource,
+    strImageSource: strImageSource ?? _strImageSource,
+    strCreativeCommonsConfirmed:
+        strCreativeCommonsConfirmed ?? _strCreativeCommonsConfirmed,
+    dateModified: dateModified ?? _dateModified,
+  );
   String? get idMeal => _idMeal;
   String? get strMeal => _strMeal;
   dynamic get strMealAlternate => _strMealAlternate;
@@ -520,5 +521,4 @@ Meals copyWith({  String? idMeal,
     map['dateModified'] = _dateModified;
     return map;
   }
-
 }
