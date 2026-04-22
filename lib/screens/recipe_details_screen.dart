@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../models/recipeDetailsMealDBModel.dart';
+import '../services/ApiServiceRecipeDetails.dart';
 import '../widgets/custom_checkbox.dart';
 import '../widgets/rating_stars_widget.dart';
 import '../widgets/startcooking_section.dart';
@@ -12,7 +14,27 @@ class RecipeDetailsScreen extends StatefulWidget {
 }
 
 class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
+  late Future<List<RecipeDetailsMeal>> recipeDetailsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    recipeDetailsFuture = ApiServiceRecipeDetails().fetchRecipeDetails();
+  }
+
   final List<String> itemsName = [
+    "Chicken breast",
+    "Plain yogurt",
+    "Garam masala",
+    "Cumin powder",
+    "Coriander powder",
+    "Tomato puree",
+    "Fresh ginger",
+    "Vegetable oil",
+    "Salt",
+  ];
+
+  final List<String> itemsAName = [
     "Chicken breast",
     "Plain yogurt",
     "Garam masala",
@@ -191,31 +213,77 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
                     fontSize: 26,
                   ),
                 ),
-                Column(
-                  spacing: 5,
-                  children: [
-                    CustomCheckbox(
-                      titleOne: itemsName[0],
-                      titleTwo: itemsQty[0],
-                    ),
-                    CustomCheckbox(
-                      titleOne: itemsName[1],
-                      titleTwo: itemsQty[1],
-                    ),
-                    CustomCheckbox(
-                      titleOne: itemsName[2],
-                      titleTwo: itemsQty[2],
-                    ),
-                    CustomCheckbox(
-                      titleOne: itemsName[3],
-                      titleTwo: itemsQty[3],
-                    ),
-                    CustomCheckbox(
-                      titleOne: itemsName[4],
-                      titleTwo: itemsQty[4],
-                    ),
-                  ],
+
+                FutureBuilder<List<RecipeDetailsMeal>>(
+                  future: recipeDetailsFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Text("No data found");
+                    }
+
+                    final meal = snapshot.data!.first;
+
+                    return Column(
+                      children: [
+                        Text(meal.strMeal ?? ""),
+                        Image.network(meal.strMealThumb ?? ""),
+                      ],
+                    );
+                  },
                 ),
+                // FutureBuilder<List<RecipeDetailsMeal>>(
+                //   future: recipeDetailsFuture,
+                //   builder: (context, snapshot) {
+                //     if (!snapshot.hasData) {
+                //       return SizedBox(
+                //         height: 50,
+                //         child: Center(child: CircularProgressIndicator()),
+                //       );
+                //     }
+                //
+                //     final RecipeDetails = snapshot.data!;
+                //
+                //     return Column(
+                //       spacing: 5,
+                //       children: List.generate(9, (index) {
+                //         return CustomCheckbox(
+                //           titleOne: RecipeDetails.strMeal,
+                //           titleTwo: RecipeDetails.strIngredient1,
+                //         );
+                //       }),
+                //     );
+                //   },
+                // ),
+
+                // Column(
+                //   spacing: 5,
+                //   children: [
+                //     CustomCheckbox(
+                //       titleOne: itemsName[0],
+                //       titleTwo: itemsQty[0],
+                //     ),
+                //     CustomCheckbox(
+                //       titleOne: itemsName[1],
+                //       titleTwo: itemsQty[1],
+                //     ),
+                //     CustomCheckbox(
+                //       titleOne: itemsName[2],
+                //       titleTwo: itemsQty[2],
+                //     ),
+                //     CustomCheckbox(
+                //       titleOne: itemsName[3],
+                //       titleTwo: itemsQty[3],
+                //     ),
+                //     CustomCheckbox(
+                //       titleOne: itemsName[4],
+                //       titleTwo: itemsQty[4],
+                //     ),
+                //   ],
+                // ),
                 Text(
                   "Instructions",
                   style: TextStyle(
