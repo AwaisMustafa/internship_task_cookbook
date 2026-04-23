@@ -29,13 +29,19 @@ class PopularPost extends StatelessWidget {
             height: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                image: NetworkImage(
-                  networkImage,
-                  // "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
-                ),
-                fit: BoxFit.cover,
-              ),
+              // image: DecorationImage(
+              //   image: NetworkImage(
+              //     networkImage,
+              //     // "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
+              //   ),
+              //   fit: BoxFit.fitHeight,
+              // ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.network(networkImage, fit: BoxFit.contain, height: 199,),
+              ],
             ),
           ),
 
@@ -73,7 +79,7 @@ class PopularPost extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      RatingStarsWidget(starSize: 15,),
+                      RatingStarsWidget(starSize: 15),
                       const SizedBox(width: 30),
                       Container(
                         padding: const EdgeInsets.symmetric(

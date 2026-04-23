@@ -110,19 +110,43 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
                 child: Icon(CupertinoIcons.heart_fill, color: Colors.pink),
               ),
             ],
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    "https://h5p.org/sites/default/files/h5p/content/825/images/image-53e9e429bba63.jpg",
-                  ),
-                  opacity: 0.6,
-                  fit: BoxFit.cover,
-                ),
-              ),
+            flexibleSpace: FutureBuilder<List<RecipeDetailsMeal>>(
+              future: recipeDetailsFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+
+                if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Text("No data found");
+                }
+
+                final meal = snapshot.data!.first;
+
+                return Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Image.network(
+                        meal.strMealThumb ?? "",
+                        // fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    // Text(meal.strMeal ?? ""),
+                    // Image.network(meal.strMealThumb ?? "",
+                    //   fit: BoxFit.cover,),
+                  ],
+                );
+              },
             ),
           ),
         ),
+
         bottomNavigationBar: StartCookingSection(),
         body: SingleChildScrollView(
           child: Padding(
@@ -137,72 +161,155 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: FutureBuilder<List<RecipeDetailsMeal>>(
+                      future: recipeDetailsFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        }
 
-                      children: [
-                        Text(
-                          "Chicken Tikka",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 34,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                          return Text("No data found");
+                        }
+
+                        final meal = snapshot.data!.first;
+
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Text(
+                              meal.strMeal ?? "",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                              ),
+                            ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                RatingStarsWidget(starSize: 25),
-                                SizedBox(width: 15),
-                                Text("4.6", style: TextStyle(fontSize: 25)),
-                                SizedBox(width: 15),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.orange,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Text(
-                                    "Medium",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    RatingStarsWidget(starSize: 25),
+                                    SizedBox(width: 15),
+                                    Text("4.6", style: TextStyle(fontSize: 25)),
+                                    SizedBox(width: 15),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Text(
+                                        "Medium",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Icon(
+                                          Icons.access_time_filled,
+                                          size: 25,
+                                          color: Colors.orange,
+                                        ),
+                                        alignment: PlaceholderAlignment.middle,
+                                      ),
+                                      const TextSpan(
+                                        text: ' 45m',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  WidgetSpan(
-                                    child: Icon(
-                                      Icons.access_time_filled,
-                                      size: 25,
-                                      color: Colors.orange,
-                                    ),
-                                    alignment: PlaceholderAlignment.middle,
-                                  ),
-                                  const TextSpan(
-                                    text: ' 45m',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                           ],
-                        ),
-                      ],
+                        );
+                      },
                     ),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //
+                    //   children: [
+                    //     Text(
+                    //       "Chicken Tikka",
+                    //       style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 34,
+                    //       ),
+                    //     ),
+                    //     Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       children: [
+                    //         Row(
+                    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //           children: [
+                    //             RatingStarsWidget(starSize: 25),
+                    //             SizedBox(width: 15),
+                    //             Text("4.6", style: TextStyle(fontSize: 25)),
+                    //             SizedBox(width: 15),
+                    //             Container(
+                    //               padding: const EdgeInsets.symmetric(
+                    //                 horizontal: 8,
+                    //                 vertical: 4,
+                    //               ),
+                    //               decoration: BoxDecoration(
+                    //                 color: Colors.orange,
+                    //                 borderRadius: BorderRadius.circular(20),
+                    //               ),
+                    //               child: Text(
+                    //                 "Medium",
+                    //                 style: TextStyle(
+                    //                   fontSize: 18,
+                    //                   fontWeight: FontWeight.bold,
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //         RichText(
+                    //           text: TextSpan(
+                    //             children: [
+                    //               WidgetSpan(
+                    //                 child: Icon(
+                    //                   Icons.access_time_filled,
+                    //                   size: 25,
+                    //                   color: Colors.orange,
+                    //                 ),
+                    //                 alignment: PlaceholderAlignment.middle,
+                    //               ),
+                    //               const TextSpan(
+                    //                 text: ' 45m',
+                    //                 style: TextStyle(
+                    //                   color: Colors.white,
+                    //                   fontSize: 20,
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                   ),
                 ),
                 Text(
@@ -229,12 +336,60 @@ class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
 
                     return Column(
                       children: [
-                        Text(meal.strMeal ?? ""),
-                        Image.network(meal.strMealThumb ?? ""),
+                        Text(
+                          meal.strInstructions ?? "",
+                          textAlign: TextAlign.start,
+
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            // fontSize: 26,
+                          ),
+                        ),
+
+                        Text(
+                          meal.strInstructions ?? "",
+                          textAlign: TextAlign.start,
+
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            // fontSize: 26,
+                          ),
+                        ),
+
+                        // ListTile(
+                        //   leading: Text(
+                        //     numbersInstructions[1],
+                        //     textAlign: TextAlign.end,
+                        //     style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontWeight: FontWeight.bold,
+                        //       // fontSize: 26,
+                        //     ),
+                        //   ),
+                        //   title: Text(
+                        //     meal.strInstructions ?? "",
+                        //     style: TextStyle(
+                        //       color: Colors.white,
+                        //       fontWeight: FontWeight.normal,
+                        //       // fontSize: 26,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     );
                   },
                 ),
+
+                //   Column(
+                //   children: [
+                //     Text(meal.strIngredient1 ?? ""),
+                //     // Image.network(meal.strMealThumb ?? ""),
+                //   ],
+                // );
+                //   },
+                // ),
                 // FutureBuilder<List<RecipeDetailsMeal>>(
                 //   future: recipeDetailsFuture,
                 //   builder: (context, snapshot) {
